@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 import {AiFillEyeInvisible, AiFillEye} from 'react-icons/ai'
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import OAuth from '../components/OAuth';
+import {db} from "../firebase"
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import {toast} from "react-toastify"
+
 
 export default function SignUp() {
     const [showPassword, setShowPassword] = useState(false)
@@ -13,6 +18,8 @@ export default function SignUp() {
     });
     // destructure email and password
     const {name, email, password} = formData;
+    const navigate = useNavigate()
+
     // update the content on the form
     function onChange(e){
         // console.log(e.target.value)
@@ -20,6 +27,35 @@ export default function SignUp() {
             ...prevState,
             [e.target.id]: e.target.value,
         }))
+    }
+    async function onSubmit(e){
+        e.preventDefault()
+
+        try {
+            const auth = getAuth()
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+            updateProfile(auth.currentUser, {
+                displayName: name
+            })
+            const user = userCredential.user
+            // console.log(user)
+
+            const formDataCopy = {...formData}
+            delete formDataCopy.password
+
+            // save time/timestamp
+            formDataCopy.timestamp = serverTimestamp();
+
+            await setDoc(doc(db, "users", user.uid), formDataCopy)
+            toast.success("Sign Up Successful")
+
+            navigate("/")
+        } catch (error) {
+            // console.log(error)
+            toast.error("Something went wrong")
+        }
+
     }
 
 
@@ -31,7 +67,7 @@ export default function SignUp() {
                 <img src="https://plus.unsplash.com/premium_photo-1671493286575-5215b2ad5b6a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8a2V5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" className='w-full rounded-2xl' alt="sign-in-image" />
             </div>
             <div className='w-full md:w-[67%] lg:w-[40%] lg:ml-20'>
-                <form >
+                <form onSubmit={onSubmit}>
                 <input  
                     type="text" 
                     id="name" 
