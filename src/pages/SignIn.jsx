@@ -26,11 +26,13 @@ export default function SignIn() {
 
     async function onSubmit(e){
         e.preventDefault();
+
         try {
             const auth = getAuth();
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
             if(userCredential.user){
+                toast.success("Sign In Successful")
                 navigate("/")
             }
         } catch (error) {
@@ -72,7 +74,7 @@ export default function SignIn() {
 
                     <div className='flex justify-between whitespace-nowrap text-sm sm:text-lg'>
                         <p className='mb-6'>Don't have an account? 
-                            <Link to="/sign-up" className='text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out ml-1'> Register</Link>
+                            <Link to="/sign-up" className='text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out ml-1'> Sign Up</Link>
                         </p>
                         <p>
                             <Link to="/forgot-password" className='text-red-600 hover:text-red-800 transition duration-200 ease-in-out'> Forgot password?</Link>
