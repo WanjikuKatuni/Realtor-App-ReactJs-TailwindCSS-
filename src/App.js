@@ -11,6 +11,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import PrivateRoute from "./components/PrivateRoute";
 import CreateListing from "./pages/CreateListing";
+import EditListing from "./pages/EditListing";
 // home page
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/create-listing" element={<PrivateRoute/>} >
             <Route path="/create-listing" element={<CreateListing/>} />
+          </Route>
+          <Route path="/edit-listing" element={<PrivateRoute/>} >
+            <Route path="/edit-listing/:listingId" element={<EditListing/>} />
           </Route>
           <Route path="/profile" element={<PrivateRoute/>}>
             <Route path="/profile" element={<Profile />} />
