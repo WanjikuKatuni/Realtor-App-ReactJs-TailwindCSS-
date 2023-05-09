@@ -12,6 +12,7 @@ import SignUp from "./pages/SignUp";
 import PrivateRoute from "./components/PrivateRoute";
 import CreateListing from "./pages/CreateListing";
 import EditListing from "./pages/EditListing";
+import Listing from "./pages/Listing";
 // home page
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
           <Route path="/profile" element={<PrivateRoute/>}>
             <Route path="/profile" element={<Profile />} />
           </Route>
+          <Route path="/category/:categoryName/:listingId" element={<Listing />} />
+
 
         </Routes>
       </Router>
