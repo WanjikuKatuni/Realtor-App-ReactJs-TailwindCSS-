@@ -11,6 +11,7 @@ import 'swiper/css/bundle'
 import {FaShare, FaMapMarkerAlt, FaBed, FaBath, FaParking, FaChair} from 'react-icons/fa'
 import {auth, getAuth} from "firebase/auth"
 import Contact from '../components/Contact'
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 
 export default function Listing() {
 
@@ -71,7 +72,7 @@ export default function Listing() {
         )}
         
         <div className='m-4 flex flex-col md:flex-row max-w-6xl lg:mx-auto p-4 rounded-lg shadow-lg bg-white lg:space-x-5'>
-            <div className='w-full'>
+            <div className='w-full`'>
                 <p className='text-2xl font-bold mb-3 text-blue-900'>
                 {listing.name} - $ {listing.offer ? listing.discountedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",") : listing.regularPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",")}
                 {listing.type === "rent" ? " / month": ""}
@@ -124,7 +125,18 @@ export default function Listing() {
                 )}
             </div>
             {/* map */}
-            <div className='bg-blue-300 w-full h-[200px] lg-[400px] z-10 overflow-x-hidden'>
+            <div className='w-full h-[200px] md:h-[400px] z-10 overflow-x-hidden mt-6 md:mt-0 ml-2'>
+                <MapContainer center={[listing.geolocation.lat, listing.geolocation.lng]} zoom={13} scrollWheelZoom={false} style={{height: "100%", width: "100%"}}>
+                    <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <Marker position={[listing.geolocation.lat, listing.geolocation.lng]}>
+                    <Popup>
+                        A pretty CSS3 popup. <br /> Easily customizable.
+                    </Popup>
+                    </Marker>
+                </MapContainer>
 
             </div>
         </div>
