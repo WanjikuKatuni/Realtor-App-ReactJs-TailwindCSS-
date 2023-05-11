@@ -75,7 +75,7 @@ export default function Category() {
       <h1 className='text-3xl text-center mt-6 font-bold mb-6'> 
         {params.categoryName === "rent" ? "Places for rent" : "Places for sale"}
       </h1>
-      
+
       {loading? (
         <Spinner/>
       ): listings && listings.length > 0 ? (
@@ -96,7 +96,7 @@ export default function Category() {
           )}
         </>
       ): (
-        <p> There are no current offers</p>
+        <p> There are no current {params.categoryName === "rent" ? "places for rent" : "places for sale"}</p>
       )}
       
     </div>
