@@ -127,7 +127,8 @@ export default function Home() {
               {offerListings.map((listing)=>(
                 <ListingItem 
                   key={listing.id} 
-                  listing={listing.data} />
+                  listing={listing.data}
+                  id={listing.id} />
               ))}
             </ul>
           </div>
@@ -142,7 +143,8 @@ export default function Home() {
               {rentListings.map((listing)=>(
                 <ListingItem 
                   key={listing.id} 
-                  listing={listing.data} />
+                  listing={listing.data}
+                  id={listing.id} />
               ))}
             </ul>
           </div>
@@ -157,7 +159,8 @@ export default function Home() {
               {saleListings.map((listing)=>(
                 <ListingItem 
                   key={listing.id} 
-                  listing={listing.data} />
+                  listing={listing.data} 
+                  id={listing.id}/>
               ))}
             </ul>
           </div>
