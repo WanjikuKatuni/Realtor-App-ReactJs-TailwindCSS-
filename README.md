@@ -1,4 +1,4 @@
-# Realtor Application - ReactJs, TailwindCSS, Firebase
+# Makao Application - ReactJs, TailwindCSS, Firebase
 A fully functional realtor application that assists users to post and find rent and for sale house listings. https://realtor-app-react.vercel.app/  The application is a RESTful API with multiple endpoints built with ReactJS, TailwindCSS, and Firebase.
 
 ## Home Page
