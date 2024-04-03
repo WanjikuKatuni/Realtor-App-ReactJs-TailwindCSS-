@@ -26,7 +26,7 @@ export default function Header() {
       <header className="flex justify-between items-center px-3 max-w-6xl mx-auto">
         <div>
           <img
-            src=""
+            src="https://cdn.makao.com/images/makao-logo.svg?v=1"
             alt="MAKAO.com"
             className="h-5 cursor-pointer"
             onClick={() => navigate("/")}
