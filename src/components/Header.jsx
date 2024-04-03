@@ -26,8 +26,8 @@ export default function Header() {
       <header className="flex justify-between items-center px-3 max-w-6xl mx-auto">
         <div>
           <img
-            src="https://static.rdc.moveaws.com/images/logos/rdc-logo-default.svg"
-            alt="logo"
+            src=""
+            alt="MAKAO.com"
             className="h-5 cursor-pointer"
             onClick={() => navigate("/")}
           />
